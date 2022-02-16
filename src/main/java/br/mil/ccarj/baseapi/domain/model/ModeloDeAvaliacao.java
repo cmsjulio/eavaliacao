@@ -38,7 +38,6 @@ public class ModeloDeAvaliacao {
     @OneToMany(mappedBy = "modeloDeAvaliacao")
     private List<Periodo> periodos;
 
-
     @OneToOne(mappedBy = "modeloDeAvaliacao")
     private ProcessoDisciplina processoDisciplina;
 //

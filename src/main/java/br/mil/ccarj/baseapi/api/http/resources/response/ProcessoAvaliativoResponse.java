@@ -1,6 +1,7 @@
 package br.mil.ccarj.baseapi.api.http.resources.response;
 
 import br.mil.ccarj.baseapi.domain.model.ModeloDeAvaliacao;
+import br.mil.ccarj.baseapi.domain.model.ProcessoDisciplina;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,5 +20,7 @@ public class ProcessoAvaliativoResponse {
     private String nome;
 
     private String descricao;
+
+    private List<ProcessoDisciplinaResponse> processoDisciplina;
 
 }

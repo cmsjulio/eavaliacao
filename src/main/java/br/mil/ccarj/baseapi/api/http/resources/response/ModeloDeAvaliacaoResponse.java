@@ -28,5 +28,5 @@ public class ModeloDeAvaliacaoResponse {
     private String descricao;
 
     @ApiModelProperty(value = "Periodos")
-    private List<Periodo> periodos;
+    private List<PeriodoResponse> periodos;
 }

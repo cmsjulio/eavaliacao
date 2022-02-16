@@ -9,35 +9,29 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "T_TIPO_DE_PROVA")
+@Table(name = "T_NOTA")
 @Audited
 @Data
 @SuperBuilder
 @EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
-public class TipoDeProva {
+public class Nota {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_TIPO_DE_PROVA")
+    @Column(name = "ID_NOTA")
     private Long id;
 
-    @Column(name = "NM_TIPO_DE_PROVA", nullable = false)
-    private String nome;
+    @Column(name = "VL_NOTA", nullable = false)
+    private Long nota;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(nullable = false, name = "ID_PERIODO", referencedColumnName = "ID_PERIODO")
-    private Periodo periodo;
+    @OneToOne
+    private TipoDeProva tipoDeProva;
 
-    @OneToOne(mappedBy = "tipoDeProva")
-    @JoinColumn(name = "ID_NOTA", referencedColumnName = "ID_NOTA")
-    private Nota nota;
 
 
 }

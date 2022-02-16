@@ -20,8 +20,8 @@ public class ProcessoDisciplinaResponse {
     @ApiModelProperty(value = "Id")
     private Long id;
 
-    @ApiModelProperty(value = "Processo Avaliativo")
-    private ProcessoAvaliativoResponse processoAvaliativo;
+//    @ApiModelProperty(value = "Processo Avaliativo")
+//    private ProcessoAvaliativoResponse processoAvaliativo;
 
     @ApiModelProperty(value = "Disciplina")
     private DisciplinaResponse disciplina;

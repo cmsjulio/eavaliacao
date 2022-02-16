@@ -44,6 +44,7 @@ public class ProcessoDiscenteController extends BaseController {
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 404, message = "Exemplo not found")})
 
+
     @GetMapping(value = "/{id}")
     @ResponseBody
     public ResponseEntity<?> findById(@PathVariable(name = "id") Long id) {
@@ -53,7 +54,7 @@ public class ProcessoDiscenteController extends BaseController {
 
     }
 
-   @ApiOperation(value = "Criar novo exemplo", nickname = "addExemplo", notes = "Criar exemplo")
+    @ApiOperation(value = "Criar novo exemplo", nickname = "addExemplo", notes = "Criar exemplo")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Created"),
             @ApiResponse(code = 400, message = "Bad Request")})
@@ -61,13 +62,13 @@ public class ProcessoDiscenteController extends BaseController {
     @PostMapping
     @ResponseBody
     public ResponseEntity<?> create(@RequestBody @Valid ProcessoDiscenteRequest processoDiscenteRequest) {
-       Discente discente = discenteService.findById(processoDiscenteRequest.getDiscente().getId());
-       ProcessoAvaliativo processoAvaliativo = processoAvaliativoService.findById(processoDiscenteRequest.getProcessoAvaliativo().getId());
-       ProcessoDiscente request = modelMapper.map(processoDiscenteRequest, ProcessoDiscente.class);
-       request.setDiscente(discente);
-       request.setProcessoAvaliativo(processoAvaliativo);
-       ProcessoDiscente created = service.create(request);
-       ProcessoDiscenteResponse response = modelMapper.map(created, ProcessoDiscenteResponse.class);
+        Discente discente = discenteService.findById(processoDiscenteRequest.getDiscente().getId());
+        ProcessoAvaliativo processoAvaliativo = processoAvaliativoService.findById(processoDiscenteRequest.getProcessoAvaliativo().getId());
+        ProcessoDiscente request = modelMapper.map(processoDiscenteRequest, ProcessoDiscente.class);
+        request.setDiscente(discente);
+        request.setProcessoAvaliativo(processoAvaliativo);
+        ProcessoDiscente created = service.create(request);
+        ProcessoDiscenteResponse response = modelMapper.map(created, ProcessoDiscenteResponse.class);
         return respondCreated(response);
     }
 

@@ -38,11 +38,7 @@ public class ModeloDeAvaliacao {
     @OneToMany(mappedBy = "modeloDeAvaliacao")
     private List<Periodo> periodos;
 
-    @OneToOne(mappedBy = "modeloDeAvaliacao")
-    private ProcessoDisciplina processoDisciplina;
-//
-//    @OneToOne
-//    @JoinColumn(name= "ID_PROCESSO_DISCIPLINA", unique = true)
-//    private ProcessoDisciplina processoDisciplina;
+    @OneToMany(mappedBy = "modeloDeAvaliacao")
+    private List<ProcessoDisciplina> processoDisciplina;
 
 }

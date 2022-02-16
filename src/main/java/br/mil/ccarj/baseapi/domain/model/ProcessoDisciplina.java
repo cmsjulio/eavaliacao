@@ -32,7 +32,7 @@ public class ProcessoDisciplina {
 //    @OneToOne(mappedBy = "processoDisciplina")
 //    private ModeloDeAvaliacao modeloDeAvaliacao;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(nullable = false, name = "ID_MODELO", referencedColumnName = "ID_MODELO")
     private ModeloDeAvaliacao modeloDeAvaliacao;
 

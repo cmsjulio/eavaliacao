@@ -23,6 +23,6 @@ public class ModeloDeAvaliacaoRequest {
     @ApiModelProperty(value = "Descricao")
     private String descricao;
 
-    @ApiModelProperty(value = "ProcessoDisciplina")
-    private ProcessoDisciplinaResponse processoDisciplina;
+//    @ApiModelProperty(value = "ProcessoDisciplina")
+//    private ProcessoDisciplinaResponse processoDisciplina;
 }

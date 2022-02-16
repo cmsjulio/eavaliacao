@@ -31,7 +31,7 @@ public class ModeloDeAvaliacaoController extends BaseController {
     private final ModelMapper modelMapper;
 
     public ModeloDeAvaliacaoController(ModeloDeAvaliacaoService service, ModelMapper modelMapper,
-    ProcessoDisciplinaService processoDisciplinaService) {
+                                       ProcessoDisciplinaService processoDisciplinaService) {
         this.service = service;
         this.modelMapper = modelMapper;
         this.processoDisciplinaService = processoDisciplinaService;
@@ -53,7 +53,7 @@ public class ModeloDeAvaliacaoController extends BaseController {
     }
 
 
-   @ApiOperation(value = "Criar novo exemplo", nickname = "addExemplo", notes = "Criar exemplo")
+    @ApiOperation(value = "Criar novo exemplo", nickname = "addExemplo", notes = "Criar exemplo")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Created"),
             @ApiResponse(code = 400, message = "Bad Request")})
@@ -61,14 +61,13 @@ public class ModeloDeAvaliacaoController extends BaseController {
     @PostMapping
     @ResponseBody
     public ResponseEntity<?> create(@RequestBody @Valid ModeloDeAvaliacaoRequest modeloDeAvaliacaoRequest) {
-       ProcessoDisciplina processoDisciplina = processoDisciplinaService.findById(modeloDeAvaliacaoRequest.getProcessoDisciplina().getId());
-       ModeloDeAvaliacao request = modelMapper.map(modeloDeAvaliacaoRequest, ModeloDeAvaliacao.class);
-       request.setProcessoDisciplina(processoDisciplina);
-       ModeloDeAvaliacao created = service.create(request);
-       ModeloDeAvaliacaoResponse response = modelMapper.map(created, ModeloDeAvaliacaoResponse.class);
+//       ProcessoDisciplina processoDisciplina = processoDisciplinaService.findById(modeloDeAvaliacaoRequest.getProcessoDisciplina().getId());
+        ModeloDeAvaliacao request = modelMapper.map(modeloDeAvaliacaoRequest, ModeloDeAvaliacao.class);
+//       request.setProcessoDisciplina(processoDisciplina);
+        ModeloDeAvaliacao created = service.create(request);
+        ModeloDeAvaliacaoResponse response = modelMapper.map(created, ModeloDeAvaliacaoResponse.class);
         return respondCreated(response);
     }
-
 
     @ApiOperation(value = "Atualizar ModeloDeAvaliacao existente ", nickname = "updateModeloDeAvaliacao", notes = "Atualiza ModeloDeAvaliacao", response = ModeloDeAvaliacaoResponse.class)
     @ApiResponses(value = {

@@ -1,5 +1,6 @@
 package br.mil.ccarj.baseapi.api.controller;
 
+import br.mil.ccarj.baseapi.api.http.resources.request.ModeloDeAvaliacaoRequest;
 import br.mil.ccarj.baseapi.api.http.resources.request.ProcessoDisciplinaRequest;
 import br.mil.ccarj.baseapi.api.http.resources.response.ProcessoDisciplinaResponse;
 import br.mil.ccarj.baseapi.domain.model.Disciplina;
@@ -33,13 +34,15 @@ public class ProcessoDisciplinaController extends BaseController {
     private final DisciplinaService disciplinaService;
     private final ProcessoDisciplinaService service;
     private final ModelMapper modelMapper;
+    private final ModeloDeAvaliacaoService modeloDeAvaliacaoService;
 
     public ProcessoDisciplinaController(ProcessoDisciplinaService service, ModelMapper modelMapper,
-    DisciplinaService disciplinaService, ProcessoAvaliativoService processoAvaliativoService) {
+                                        DisciplinaService disciplinaService, ProcessoAvaliativoService processoAvaliativoService, ModeloDeAvaliacaoService modeloDeAvaliacaoService) {
         this.service = service;
         this.modelMapper = modelMapper;
         this.disciplinaService = disciplinaService;
         this.processoAvaliativoService = processoAvaliativoService;
+        this.modeloDeAvaliacaoService = modeloDeAvaliacaoService;
     }
 
     @ApiOperation(value = "Buscar exemplo por ID", nickname = "getExemploById", notes = "Returns a single Exemplo", response = ProcessoDisciplinaResponse.class)
@@ -67,9 +70,11 @@ public class ProcessoDisciplinaController extends BaseController {
     public ResponseEntity<?> create(@RequestBody @Valid ProcessoDisciplinaRequest processoDisciplinaRequest) {
        Disciplina disciplina = disciplinaService.findById(processoDisciplinaRequest.getDisciplina().getId());
        ProcessoAvaliativo processoAvaliativo = processoAvaliativoService.findById(processoDisciplinaRequest.getProcessoAvaliativo().getId());
+       ModeloDeAvaliacao modeloDeAvaliacao = modeloDeAvaliacaoService.findById(processoDisciplinaRequest.getModeloDeAvaliacao().getId());
        ProcessoDisciplina request = modelMapper.map(processoDisciplinaRequest, ProcessoDisciplina.class);
        request.setDisciplina(disciplina);
        request.setProcessoAvaliativo(processoAvaliativo);
+       request.setModeloDeAvaliacao(modeloDeAvaliacao);
        ProcessoDisciplina created = service.create(request);
        ProcessoDisciplinaResponse response = modelMapper.map(created, ProcessoDisciplinaResponse.class);
         return respondCreated(response);

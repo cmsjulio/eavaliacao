@@ -23,10 +23,10 @@ public class ProcessoDisciplinaResponse {
     @ApiModelProperty(value = "Processo Avaliativo")
     private ProcessoAvaliativoResponse processoAvaliativo;
 
-    @ApiModelProperty(value = "Processo Avaliativo")
+    @ApiModelProperty(value = "Disciplina")
     private DisciplinaResponse disciplina;
 
-    @ApiModelProperty(value = "Processo Avaliativo")
+    @ApiModelProperty(value = "Modelo de Avaliação")
     private ModeloDeAvaliacaoResponse modeloDeAvaliacao;
 
 }

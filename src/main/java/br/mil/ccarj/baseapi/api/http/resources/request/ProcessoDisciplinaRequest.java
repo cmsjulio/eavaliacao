@@ -6,6 +6,7 @@ import br.mil.ccarj.baseapi.api.http.resources.response.ProcessoAvaliativoRespon
 import br.mil.ccarj.baseapi.domain.model.Disciplina;
 import br.mil.ccarj.baseapi.domain.model.ModeloDeAvaliacao;
 import br.mil.ccarj.baseapi.domain.model.ProcessoAvaliativo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +27,6 @@ public class ProcessoDisciplinaRequest {
     @ApiModelProperty(value = "Processo Avaliativo")
     private ProcessoAvaliativoResponse processoAvaliativo;
 
-//    @ApiModelProperty(value = "Modelo de Avaliacao")
-//    private ModeloDeAvaliacaoResponse modeloDeAvaliacao;
+    @ApiModelProperty(value = "Modelo de Avaliacao")
+    private ModeloDeAvaliacaoResponse modeloDeAvaliacao;
 }

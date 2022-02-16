@@ -29,7 +29,11 @@ public class ProcessoDisciplina {
     @Column(name = "ID_PROCESSO_DISCIPLINA")
     private Long id;
 
-    @OneToOne(mappedBy = "processoDisciplina")
+//    @OneToOne(mappedBy = "processoDisciplina")
+//    private ModeloDeAvaliacao modeloDeAvaliacao;
+
+    @OneToOne
+    @JoinColumn(nullable = false, name = "ID_MODELO", referencedColumnName = "ID_MODELO")
     private ModeloDeAvaliacao modeloDeAvaliacao;
 
     @ManyToOne

@@ -39,6 +39,10 @@ public class ProcessoAvaliativo {
     @OneToMany(mappedBy = "processoAvaliativo")
     private List<ProcessoDisciplina> processoDisciplina;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "processoAvaliativo")
+    private List<ProcessoDiscente> processoDiscente;
+
 //    @JsonIgnore
 //    @ManyToMany(mappedBy = "processosAvaliativos")
 //    private List<Disciplina> disciplinas;

@@ -18,4 +18,7 @@ public class NotaResponse {
     @ApiModelProperty(value = "Nota")
     private Long nota;
 
+    @ApiModelProperty(value = "Processo Discente")
+    private ProcessoDiscenteResponse processoDiscente;
+
 }

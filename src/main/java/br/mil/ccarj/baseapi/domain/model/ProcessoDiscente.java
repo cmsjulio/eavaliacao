@@ -37,4 +37,5 @@ public class ProcessoDiscente {
     @JoinColumn(nullable = false, name = "ID_DISCENTE", referencedColumnName = "ID_DISCENTE")
     private Discente discente;
 
+
 }

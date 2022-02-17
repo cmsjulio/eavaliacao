@@ -33,5 +33,4 @@ public class Nota {
     private TipoDeProva tipoDeProva;
 
 
-
 }

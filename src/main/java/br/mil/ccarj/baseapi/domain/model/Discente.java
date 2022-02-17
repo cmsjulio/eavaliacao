@@ -27,9 +27,11 @@ public class Discente {
     @Column(name = "NM_DISCENTE")
     private String nome;
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "discente")
-//    private List<ProcessoDiscente> processoDiscentes;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "discente")
+    private List<ProcessoDiscente> processoDiscente;
+
 
 //    @ManyToMany
 //    @JoinTable(

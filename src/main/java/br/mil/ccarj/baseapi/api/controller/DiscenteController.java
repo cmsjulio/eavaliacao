@@ -4,8 +4,11 @@ import br.mil.ccarj.baseapi.api.http.resources.request.DiscenteRequest;
 import br.mil.ccarj.baseapi.api.http.resources.response.DiscenteResponse;
 import br.mil.ccarj.baseapi.api.http.resources.response.ProcessoDiscenteResponse;
 import br.mil.ccarj.baseapi.domain.model.Discente;
+import br.mil.ccarj.baseapi.domain.model.ProcessoAvaliativo;
 import br.mil.ccarj.baseapi.domain.model.ProcessoDiscente;
+import br.mil.ccarj.baseapi.domain.model.ProcessoDisciplina;
 import br.mil.ccarj.baseapi.domain.service.DiscenteService;
+import br.mil.ccarj.baseapi.domain.service.DiscenteServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -26,10 +29,12 @@ import java.util.stream.Collectors;
 public class DiscenteController extends BaseController {
 
     private final DiscenteService service;
+    private final DiscenteServiceImpl discenteService;
     private final ModelMapper modelMapper;
 
-    public DiscenteController(DiscenteService service, ModelMapper modelMapper) {
+    public DiscenteController(DiscenteService service, DiscenteServiceImpl discenteService, ModelMapper modelMapper) {
         this.service = service;
+        this.discenteService = discenteService;
         this.modelMapper = modelMapper;
     }
 
@@ -97,10 +102,23 @@ public class DiscenteController extends BaseController {
 
     @GetMapping(value = "/disciplinas/{id}")
     @ResponseBody
-    public List<ProcessoDiscente> teste(@PathVariable(name = "id") Long id) {
-        final Discente discente = service.findById(id);
-        final List<ProcessoDiscente> processoDiscente = discente.getProcessoDiscente();
-        return processoDiscente;
+    public List<ProcessoDiscente> processoDiscentePorIdDeDiscente(@PathVariable(name = "id") Long id) {
+        return discenteService.obterListaDeProcessoDiscentePorIdDeUmDiscente(id);
+
+    }
+
+    @GetMapping(value = "/processo/{id}")
+    @ResponseBody
+    public List<ProcessoAvaliativo> processoAvaliatovoPorIdDeDiscente (@PathVariable(name = "id") Long id) {
+        return discenteService.obterListaDeProcessoAvaliativoPorIdDeUmDiscente(id);
+
+    }
+
+
+    @GetMapping(value = "/processoDisciplina/{id}")
+    @ResponseBody
+    public List<ProcessoDisciplina> processoDisciplinaPorIdDeDiscente (@PathVariable(name = "id") Long id) {
+        return discenteService.obterListaDeProcessoDisciplinaPorIdDeUmDiscente(id);
 
     }
 }

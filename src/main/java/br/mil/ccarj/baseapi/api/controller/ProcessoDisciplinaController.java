@@ -2,6 +2,7 @@ package br.mil.ccarj.baseapi.api.controller;
 
 import br.mil.ccarj.baseapi.api.http.resources.request.ModeloDeAvaliacaoRequest;
 import br.mil.ccarj.baseapi.api.http.resources.request.ProcessoDisciplinaRequest;
+import br.mil.ccarj.baseapi.api.http.resources.response.ModeloDeAvaliacaoResponse;
 import br.mil.ccarj.baseapi.api.http.resources.response.ProcessoDisciplinaResponse;
 import br.mil.ccarj.baseapi.domain.model.Disciplina;
 import br.mil.ccarj.baseapi.domain.model.ModeloDeAvaliacao;
@@ -71,10 +72,17 @@ public class ProcessoDisciplinaController extends BaseController {
        Disciplina disciplina = disciplinaService.findById(processoDisciplinaRequest.getDisciplina().getId());
        ProcessoAvaliativo processoAvaliativo = processoAvaliativoService.findById(processoDisciplinaRequest.getProcessoAvaliativo().getId());
        ModeloDeAvaliacao modeloDeAvaliacao = modeloDeAvaliacaoService.findById(processoDisciplinaRequest.getModeloDeAvaliacao().getId());
+//       ModeloDeAvaliacaoRequest modeloDeAvaliacaoRequest = modelMapper.map(modeloDeAvaliacao, ModeloDeAvaliacaoRequest.class);
+//       modeloDeAvaliacao.setId(null);
+
+       ModeloDeAvaliacaoRequest modeloDeAvaliacaoRequest = modelMapper.map(modeloDeAvaliacao, ModeloDeAvaliacaoRequest.class);
+       ModeloDeAvaliacao modeloDeAvaliacao1 = modelMapper.map(modeloDeAvaliacaoRequest, ModeloDeAvaliacao.class);
+       ModeloDeAvaliacao modeloCopia = modeloDeAvaliacaoService.create(modeloDeAvaliacao1);
+
        ProcessoDisciplina request = modelMapper.map(processoDisciplinaRequest, ProcessoDisciplina.class);
        request.setDisciplina(disciplina);
        request.setProcessoAvaliativo(processoAvaliativo);
-       request.setModeloDeAvaliacao(modeloDeAvaliacao);
+       request.setModeloDeAvaliacao(modeloCopia);
        ProcessoDisciplina created = service.create(request);
        ProcessoDisciplinaResponse response = modelMapper.map(created, ProcessoDisciplinaResponse.class);
         return respondCreated(response);

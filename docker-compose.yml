@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  gt-keycloak:
+    image: quay.io/keycloak/keycloak:10.0.2
+    container_name: conclusao-projeto-keycloak
+    volumes: 
+        - ./keycloak/realm-export.json:/keycloak/realm-export.json
+    ports:
+      - 8084:8080
+    environment:
+      KEYCLOAK_IMPORT: /keycloak/realm-export.json
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      DB_VENDOR: h2
+
+  conclusao-projeto-postgres:
+    build:
+      context: ./conclusao-database
+      dockerfile: Dockerfile
+    container_name: conclusao-projeto-postgres
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_PASSWORD=conclusao
+      - POSTGRES_DB=conclusao
+      - POSTGRES_USER=conclusao
+
+  camunda-conclusao-projeto-postgres:
+    build:
+      context: ./camunda-database
+      dockerfile: Dockerfile
+    container_name: camunda-conclusao-projeto-postgres
+    ports:
+      - "5435:5432"
+    environment:
+      - POSTGRES_PASSWORD=camunda
+      - POSTGRES_DB=camunda
+      - POSTGRES_USER=camunda

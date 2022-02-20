@@ -34,11 +34,9 @@ public class DisciplinaTest {
     public void salvarDisciplina() {
 
         Disciplina disciplina = new Disciplina();
-
         disciplina.setNome("História");
 
         HttpEntity<Disciplina> request = new HttpEntity<>(disciplina);
-
         ResponseEntity<Disciplina> response = testRestTemplate.postForEntity("/disciplina", request, Disciplina.class);
 
         assertNotNull(response.getBody().getId());
@@ -46,5 +44,4 @@ public class DisciplinaTest {
         assertEquals("História", response.getBody().getNome());
 
     }
-
 }

@@ -28,7 +28,7 @@ public class DisciplinaTest {
         assertEquals(1, response.getBody().getId());
         assertEquals("Matemática", response.getBody().getNome());
 
-    }
+        }
 
     @Test
     public void salvarDisciplina() {
@@ -44,4 +44,6 @@ public class DisciplinaTest {
         assertEquals("História", response.getBody().getNome());
 
     }
+
+
 }
